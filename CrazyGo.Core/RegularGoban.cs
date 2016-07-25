@@ -22,7 +22,7 @@ namespace CrazyGo.Core
             {
                 for (int w = 0; w < width; w++)
                 {
-                    _positions.Add(new Position(h, w));
+                    _positions.Add(new Position(h+1, w+1));
                 }
             }
         }

@@ -39,23 +39,10 @@ namespace CrazyGo.Core
             _player = stone.Player;
         }
 
-        /// <summary>
-        /// Add a stone in the group.
-        /// </summary>
-        /// <param name="stone"></param>
-        /// <exception cref="ArgumentException">Thrown when the stone has not the same ownership (player) as the group's one.</exception>
-        /// <exception cref="ArgumentException">Thrown when the stone is not adjacent to this group.</exception>
-        public void Add(Stone stone)
+        public Group(Group group)
         {
-            if (stone.Player != _player)
-            {
-                throw new ArgumentException("stone has not the same ownership (" + stone.Player + ") as the group's one (" + _player + ")");
-            }
-            if (!AdjacentPositions.Contains(stone.Position))
-            {
-                throw new ArgumentException("Stone " + stone + " is not adjacent to this group");
-            }
-            _stones.Add(stone);
+            _stones = new HashSet<Stone>(group.Stones);
+            _player = group.Player;
         }
 
         /// <summary>
@@ -75,6 +62,58 @@ namespace CrazyGo.Core
             }
         }
 
+        /// <summary>
+        /// Merge a stone with a group into a NEW group.
+        /// </summary>
+        /// <param name="group"></param>
+        /// <param name="stone"></param>
+        /// <returns></returns>
+        public static Group operator +(Group group, Stone stone)
+        {
+            Group result = new Group(group);
+            if (stone.Player != group._player)
+            {
+                throw new ArgumentException("Stone (" + stone.Player + ") and group (" + group._player + ") cannot be merged.");
+            }
+            if (!group.AdjacentPositions.Contains(stone.Position))
+            {
+                throw new ArgumentException("Stone and group being merged must be adjacent.");
+            }
+            result._stones.Add(stone);
+            return result;
+        }
+
+        public static bool operator ==(Group g1, Group g2)
+        {
+            return g1._player == g2._player &&
+                   g1._stones.SetEquals(g2._stones);
+        }
+
+        public static bool operator !=(Group g1, Group g2)
+        {
+            return !(g1 == g2);
+        }
+
+        /// <summary>
+        /// Merge two different groups into a NEW group.
+        /// </summary>
+        /// <param name="group1"></param>
+        /// <param name="group2"></param>
+        /// <returns></returns>
+        public static Group operator +(Group group1, Group group2)
+        {
+            Group result = new Group(group1);
+            if (group1._player != group2._player)
+            {
+                throw new ArgumentException("Group (" + group1._player + ") and group (" + group2._player + ") cannot be merged.");
+            }
+            if (!group1.AdjacentPositions.Intersect(group2.AdjacentPositions).Any())
+            {
+                throw new ArgumentException("Groups being merged must be adjacent.");
+            }
+            result._stones = new HashSet<Stone>(group1._stones.Union(group2._stones));
+            return result;
+        }
 
         /// <summary>
         /// Positions involved in the group.

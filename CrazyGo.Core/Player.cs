@@ -24,6 +24,22 @@ namespace CrazyGo.Core
             return _name + " (" + _color + ")";
         }
 
+        public override int GetHashCode()
+        {
+            return _name.GetHashCode();
+        }
+
+        public PlaceStone PlaceStone(Position position)
+        {
+            Stone stone = new Stone(position, this);
+            return new PlaceStone(stone);
+        }
+
+        public PlaceStone PlaceStone(int row, int column)
+        {
+            return PlaceStone(new Position(row, column));
+        }
+
         /// <summary>
         /// Player name.
         /// </summary>

@@ -35,5 +35,10 @@
             _player = player;
         }
 
+        public override string ToString()
+        {
+            return _position + " " + _player;
+        }
+
     }
 }

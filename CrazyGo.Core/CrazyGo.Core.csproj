@@ -41,7 +41,6 @@
     <Compile Include="Action.cs" />
     <Compile Include="ComputerPlayer.cs" />
     <Compile Include="Game.cs" />
-    <Compile Include="GameRules.cs" />
     <Compile Include="Goban.cs" />
     <Compile Include="Color.cs" />
     <Compile Include="GameContext.cs" />

@@ -13,6 +13,8 @@ namespace CrazyGo.Core
         private int _playerTurn;
         private HashSet<Group> _groups;
 
+        public Turn Previous { get; private set; }
+
         /// <summary>
         /// Instantiates a Turn by specifying all properties.
         /// </summary>
@@ -24,14 +26,111 @@ namespace CrazyGo.Core
             _gameContext = gameContext;
             _playerTurn = playerTurn;
             _groups = new HashSet<Group>(groups);
+            Previous = null;
         }
 
-        public Turn InitializeNextTurn()
+        private Turn initializeNextTurn()
         {
             Turn nextTurn = new Turn(_gameContext);
-            nextTurn._playerTurn = (_playerTurn++) % _gameContext.Players.Length;
+            nextTurn._playerTurn = (_playerTurn+1) % _gameContext.Players.Length;
+            nextTurn.Previous = this;
+            nextTurn._groups = new HashSet<Group>(Groups);
             return nextTurn;
         }
+
+
+
+        public bool IsCapturing(Stone stone)
+        {
+            foreach (var group in _groups.Where(g => g.Player != stone.Player))
+            {
+                var freedoms = GetFreedoms(group);
+                if (freedoms.Contains(stone.Position) && freedoms.Count() == 1)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
+        public Turn NextTurn(Action action)
+        {
+            if (action.Player != CurrentPlayer)
+            {
+                return null;
+            }
+
+            if (action is PassHand)
+            {
+                return initializeNextTurn();
+            }
+
+            else if (action is PlaceStone)
+            {
+                var placeStone = action as PlaceStone;
+                var stone = placeStone.Stone;
+                if (!FreePositions.Contains(stone.Position))
+                {
+                    return null;
+                }
+
+                Turn nextTurn = initializeNextTurn();
+
+                // Remove captured groups
+                var opponentsGroups = nextTurn._groups.Where(g => g.Player != stone.Player);
+                foreach (var group in opponentsGroups)
+                {
+                    var f = GetFreedoms(group);
+                    if (f.Count() == 1 && f.Contains(stone.Position))
+                    {
+                        nextTurn._groups.Remove(group);
+                    }
+                }
+
+                // Create a new group with the new stone
+                Group newGroup = new Group(stone);
+
+                // Merge adjacent groups
+                var adjacentGroups = nextTurn._groups.Where(g => g.Player == stone.Player && g.AdjacentPositions.Contains(stone.Position));
+                foreach (var group in adjacentGroups)
+                {
+                    newGroup += group;
+                    nextTurn._groups.Remove(group);
+                }
+                nextTurn._groups.Add(newGroup);
+
+                // Check that newGroup hast freedom in nextTurn
+                if (!nextTurn.GetFreedoms(newGroup).Any())
+                {
+                    return null;
+                }
+
+                // Check Ko rule
+                if (nextTurn.isSameState(Previous))
+                {
+                    return null;
+                }
+
+                // Action is valid, nextTurn is well created
+                return nextTurn;
+
+            }
+            else
+            {
+                throw new ArgumentException("Action expected to be PlaceStone or PassHand.");
+            }
+        }
+
+
+        private bool isSameState(Turn other)
+        {
+            return other != null &&
+                   _gameContext == other._gameContext &&
+                   _playerTurn == other._playerTurn &&
+                   _groups.SetEquals(other._groups);
+        }
+
 
         /// <summary>
         /// Instantiates a new Turn with empty collection of groups.
@@ -43,6 +142,7 @@ namespace CrazyGo.Core
             _gameContext = gameContext;
             _playerTurn = 0;
             _groups = new HashSet<Group>();
+            Previous = null;
         }
 
         /// <summary>
