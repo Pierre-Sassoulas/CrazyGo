@@ -5,9 +5,9 @@
     /// </summary>
     public enum Color
     {
-#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        White,
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member        
         Black,
+        White,
         Red,
         Blue,
         Green,

@@ -29,5 +29,6 @@ namespace CrazyGo.Core
                 return new PassHand(this);
             }
         }
+
     }
 }

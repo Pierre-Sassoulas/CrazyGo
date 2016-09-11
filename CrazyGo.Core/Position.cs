@@ -38,25 +38,6 @@ namespace CrazyGo.Core
         }
 
         /// <summary>
-        /// Returns true if p1 and p2 have same rows and same columns.
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public override bool Equals(object obj)
-        {
-            return obj is Position && this == (Position)obj;
-        }
-
-        /// <summary>
-        /// Returns a combination of Row hash code and Column hash code.
-        /// </summary>
-        /// <returns></returns>
-        public override int GetHashCode()
-        {
-            return _row.GetHashCode() ^ _column.GetHashCode();
-        }
-
-        /// <summary>
         /// Returns true if both positions have same rows and same columns.
         /// </summary>
         /// <param name="other"></param>
@@ -86,6 +67,25 @@ namespace CrazyGo.Core
         public static bool operator !=(Position p1, Position p2)
         {
             return !(p1 == p2);
+        }
+
+        /// <summary>
+        /// Returns true if p1 and p2 have same rows and same columns.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public override bool Equals(object obj)
+        {
+            return obj is Position && this == (Position)obj;
+        }
+
+        /// <summary>
+        /// Returns a combination of Row hash code and Column hash code.
+        /// </summary>
+        /// <returns></returns>
+        public override int GetHashCode()
+        {
+            return _row.GetHashCode() ^ _column.GetHashCode();
         }
 
         /// <summary>

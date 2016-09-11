@@ -46,7 +46,7 @@
     <Compile Include="GameContext.cs" />
     <Compile Include="Group.cs" />
     <Compile Include="HumanPlayer.cs" />
-    <Compile Include="IEnumerableExtensionMethods.cs" />
+    <Compile Include="ExtensionMethods.cs" />
     <Compile Include="PassHand.cs" />
     <Compile Include="PlaceStone.cs" />
     <Compile Include="Player.cs" />

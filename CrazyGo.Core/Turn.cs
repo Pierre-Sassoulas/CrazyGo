@@ -32,7 +32,7 @@ namespace CrazyGo.Core
         private Turn initializeNextTurn()
         {
             Turn nextTurn = new Turn(_gameContext);
-            nextTurn._playerTurn = (_playerTurn+1) % _gameContext.Players.Length;
+            nextTurn._playerTurn = (_playerTurn + 1) % _gameContext.Players.Length;
             nextTurn.Previous = this;
             nextTurn._groups = new HashSet<Group>(Groups);
             return nextTurn;
@@ -78,26 +78,35 @@ namespace CrazyGo.Core
                 Turn nextTurn = initializeNextTurn();
 
                 // Remove captured groups
-                var opponentsGroups = nextTurn._groups.Where(g => g.Player != stone.Player);
-                foreach (var group in opponentsGroups)
+                for (int g = 0; g < nextTurn._groups.Count; g++)
                 {
-                    var f = GetFreedoms(group);
-                    if (f.Count() == 1 && f.Contains(stone.Position))
+                    var group = nextTurn._groups.ElementAt(g);
+                    if (group.Player != stone.Player)
                     {
-                        nextTurn._groups.Remove(group);
-                    }
+                        var f = GetFreedoms(group);
+                        if (f.Count() == 1 && f.Contains(stone.Position))
+                        {
+                            nextTurn._groups.Remove(group);
+                            g--;
+                        }
+                    }                    
                 }
 
                 // Create a new group with the new stone
                 Group newGroup = new Group(stone);
 
                 // Merge adjacent groups
-                var adjacentGroups = nextTurn._groups.Where(g => g.Player == stone.Player && g.AdjacentPositions.Contains(stone.Position));
-                foreach (var group in adjacentGroups)
+                for (int g = 0; g < nextTurn._groups.Count; g++)
                 {
-                    newGroup += group;
-                    nextTurn._groups.Remove(group);
+                    var group = nextTurn._groups.ElementAt(g);
+                    if (group.Player == stone.Player && group.AdjacentPositions.Contains(stone.Position))
+                    {
+                        newGroup += group;
+                        nextTurn._groups.Remove(group);
+                        g--;
+                    }
                 }
+
                 nextTurn._groups.Add(newGroup);
 
                 // Check that newGroup hast freedom in nextTurn
@@ -126,7 +135,7 @@ namespace CrazyGo.Core
         private bool isSameState(Turn other)
         {
             return other != null &&
-                   _gameContext == other._gameContext &&
+                   ReferenceEquals(_gameContext, other._gameContext) &&
                    _playerTurn == other._playerTurn &&
                    _groups.SetEquals(other._groups);
         }

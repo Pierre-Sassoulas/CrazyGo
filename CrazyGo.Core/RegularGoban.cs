@@ -18,11 +18,11 @@ namespace CrazyGo.Core
         /// <param name="width"></param>
         public RegularGoban(int height, int width)
         {
-            for (int h = 0; h < height; h++)
+            for (int h = 1; h <= height; h++)
             {
-                for (int w = 0; w < width; w++)
+                for (int w = 1; w <= width; w++)
                 {
-                    _positions.Add(new Position(h+1, w+1));
+                    _positions.Add(new Position(h, w));
                 }
             }
         }

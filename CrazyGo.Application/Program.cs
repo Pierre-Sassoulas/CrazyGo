@@ -11,20 +11,27 @@ namespace CrazyGo.Application
     {
         static void Main(string[] args)
         {
-            Player black = new HumanPlayer() { Color = Color.Black, Name = "Black" };
-            Player white = new HumanPlayer() { Color = Color.White, Name = "White" };
-            Goban goban = new RegularGoban(3, 4);
-            GameContext gameContext = new GameContext(goban, new Player[] { black, white });
-            Turn turn = new Turn(gameContext);
+            //string s1 = "hello";
+            //string s2 = "iello";
+            //s2 = s2.Replace('i', 'h');
+            //Console.WriteLine("s1 = " + s1);
+            //Console.WriteLine("s2 = " + s2);
+            //Console.WriteLine("ReferenceEquals : " + Object.ReferenceEquals(s1, s2));
+            //Console.WriteLine("Equals : " + s1.Equals(s2));
+            //Console.WriteLine("Operator == : " + (s1 == s2));
 
-            turn = turn.NextTurn(black.PlaceStone(1, 3));
-            turn = turn.NextTurn(white.PlaceStone(1, 2));
-            turn = turn.NextTurn(black.PlaceStone(2, 4));
-            turn = turn.NextTurn(white.PlaceStone(2, 1));
-            turn = turn.NextTurn(black.PlaceStone(3, 3));
-            turn = turn.NextTurn(white.PlaceStone(3, 2));
-            turn = turn.NextTurn(black.PlaceStone(2, 2));
-            turn = turn.NextTurn(white.PlaceStone(2, 3));
+            //Console.WriteLine();
+
+            //var h1 = new HashSet<string>();
+            //h1.Add(s1);
+            //var h2 = new HashSet<string>();
+            //h2.Add(s2);
+            //Console.WriteLine("SetEquals : " + h1.SetEquals(h2));
+
+
+            Stone s = null;
+            Console.WriteLine(s.Player);
+
         }
 
         private static void TestMergeGroup()
@@ -37,19 +44,6 @@ namespace CrazyGo.Application
             group1 += group2;
             foreach (var p in group1.AdjacentPositions)
                 Console.WriteLine(p);
-        }
-
-        private static void TestAccessBoardPositions()
-        {
-            Goban board = new Goban();
-            board.Add(new Position(1, 2));
-            board.Add(new Position(3, 4));
-
-            foreach (var position in board.Positions)
-                Console.WriteLine(position);
-
-            foreach (var position in board.Positions)
-                Console.WriteLine(position);
         }
     }
 }

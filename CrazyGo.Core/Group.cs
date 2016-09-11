@@ -7,7 +7,7 @@ namespace CrazyGo.Core
     /// <summary>
     /// Represents a group of stones.
     /// </summary>
-    public class Group
+    public class Group : IEquatable<Group>
     {
         private HashSet<Stone> _stones;
         private Player _player;
@@ -83,15 +83,52 @@ namespace CrazyGo.Core
             return result;
         }
 
+
+
+        public bool Equals(Group other)
+        {
+            if (ReferenceEquals(other, null))
+            {
+                return false;
+            }
+            return ReferenceEquals(_player, other._player) && _stones.SetEquals(other._stones);
+        }
+
+        public override bool Equals(object obj)
+        {
+            var g = obj as Group; ;
+            if (ReferenceEquals(g, null))
+            {
+                return false;
+            }
+            return Equals(g);
+        }
+
+
         public static bool operator ==(Group g1, Group g2)
         {
-            return g1._player == g2._player &&
-                   g1._stones.SetEquals(g2._stones);
+            if (ReferenceEquals(g1, g2))
+            {
+                return true;
+            }
+            if (ReferenceEquals(g1, null) || ReferenceEquals(g2, null))
+            {
+                return false;
+            }
+            return g1.Equals(g2);
         }
 
         public static bool operator !=(Group g1, Group g2)
         {
             return !(g1 == g2);
+        }
+
+        public override int GetHashCode()
+        {
+            if (_stones.Count > 0)
+                return _stones.ElementAt(0).GetHashCode();
+            return base.GetHashCode();
+            
         }
 
         /// <summary>
@@ -107,7 +144,7 @@ namespace CrazyGo.Core
             {
                 throw new ArgumentException("Group (" + group1._player + ") and group (" + group2._player + ") cannot be merged.");
             }
-            if (!group1.AdjacentPositions.Intersect(group2.AdjacentPositions).Any())
+            if (!group1.AdjacentPositions.Intersect(group2.Positions).Any())
             {
                 throw new ArgumentException("Groups being merged must be adjacent.");
             }
@@ -142,6 +179,5 @@ namespace CrazyGo.Core
         {
             return _stones.Contains(stone);
         }
-
     }
 }

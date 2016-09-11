@@ -9,7 +9,7 @@ namespace CrazyGo.Core
     /// <summary>
     /// Provides extension methods for IEnumerable objects.
     /// </summary>
-    public static class IEnumerableExtensionMethods
+    public static class ExtensionMethods
     {
         /// <summary>
         /// Returns a random element from an enumerable.
@@ -34,5 +34,11 @@ namespace CrazyGo.Core
             int index = rand.Next(0, enumerable.Count());
             return enumerable.ElementAt(index);
         }
+
+        public static bool Contains(this IEnumerable<Position> enumerable, int row, int column)
+        {
+            return enumerable.Contains(new Position(row, column));
+        }
+
     }
 }

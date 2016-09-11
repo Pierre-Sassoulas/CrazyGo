@@ -10,6 +10,12 @@ namespace CrazyGo.Core
         private Color _color;
         private string _name;
 
+        public Player()
+        {
+            _name = "";
+            _color = Color.Black;
+        }
+
         /// <summary>
         /// Player color.
         /// </summary>
@@ -51,22 +57,21 @@ namespace CrazyGo.Core
 
         public bool Equals(Player other)
         {
-            return this == other;
-        }
-
-        public static bool operator ==(Player p1, Player p2)
-        {
-            return p1._name == p2._name && p1._color == p2._color;
-        }
-
-        public static bool operator !=(Player p1, Player p2)
-        {
-            return !(p1 == p2);
+            if (ReferenceEquals(other, null))
+            {
+                return false;
+            }
+            return _name == other._name && _color == other._color;
         }
 
         public override bool Equals(object obj)
         {
-            return obj is Player && this == (Player)obj;
+            var p = obj as Player;
+            if (ReferenceEquals(p, null))
+            {
+                return false;
+            }
+            return Equals(p);
         }
 
         /// <summary>
