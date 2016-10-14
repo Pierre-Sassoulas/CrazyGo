@@ -5,11 +5,9 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrazyGo.Core", "CrazyGo.Core\CrazyGo.Core.csproj", "{040B9FDD-0620-47DA-B36A-55C9F4CB32E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrazyGo.Application", "CrazyGo.Application\CrazyGo.Application.csproj", "{B9A2AA5A-6F52-47B3-AD19-F96CBE2D9D23}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrazyGo.WPF", "CrazyGo.WPF\CrazyGo.WPF.csproj", "{8DF5392F-0CB2-4E7F-B4E5-8358F3CA7B1D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrazyGo.Core.Tests", "CrazyGo.Core.Tests\CrazyGo.Core.Tests.csproj", "{380BFF05-1B3C-42FB-BB94-1EF620436173}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrazyGo.WPF", "CrazyGo.WPF\CrazyGo.WPF.csproj", "{0C8523F9-5ACE-410C-9FA2-69BAB078DCD6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,18 +19,14 @@ Global
 		{040B9FDD-0620-47DA-B36A-55C9F4CB32E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{040B9FDD-0620-47DA-B36A-55C9F4CB32E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{040B9FDD-0620-47DA-B36A-55C9F4CB32E0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B9A2AA5A-6F52-47B3-AD19-F96CBE2D9D23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B9A2AA5A-6F52-47B3-AD19-F96CBE2D9D23}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B9A2AA5A-6F52-47B3-AD19-F96CBE2D9D23}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B9A2AA5A-6F52-47B3-AD19-F96CBE2D9D23}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8DF5392F-0CB2-4E7F-B4E5-8358F3CA7B1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8DF5392F-0CB2-4E7F-B4E5-8358F3CA7B1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8DF5392F-0CB2-4E7F-B4E5-8358F3CA7B1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8DF5392F-0CB2-4E7F-B4E5-8358F3CA7B1D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{380BFF05-1B3C-42FB-BB94-1EF620436173}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{380BFF05-1B3C-42FB-BB94-1EF620436173}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{380BFF05-1B3C-42FB-BB94-1EF620436173}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{380BFF05-1B3C-42FB-BB94-1EF620436173}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C8523F9-5ACE-410C-9FA2-69BAB078DCD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C8523F9-5ACE-410C-9FA2-69BAB078DCD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C8523F9-5ACE-410C-9FA2-69BAB078DCD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C8523F9-5ACE-410C-9FA2-69BAB078DCD6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

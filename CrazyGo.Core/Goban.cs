@@ -21,13 +21,23 @@ namespace CrazyGo.Core
             get { return _positions.ToArray(); }
         }
 
+        public int GetHeight()
+        {
+            return _positions.Max(p => p.Row);
+        }
+
+        public int GetWidth()
+        {
+            return _positions.Max(p => p.Column);
+        }
+
         /// <summary>
         /// Add a position on the goban.
         /// </summary>
         /// <param name="position"></param>
         public void Add(Position position)
         {
-            _positions.Add(position);            
+            _positions.Add(position);
         }
     }
 }
