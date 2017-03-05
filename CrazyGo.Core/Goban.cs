@@ -39,5 +39,10 @@ namespace CrazyGo.Core
         {
             _positions.Add(position);
         }
+
+        public override string ToString()
+        {
+            return "Goban " + GetHeight() + "x" + GetWidth();
+        }
     }
 }
