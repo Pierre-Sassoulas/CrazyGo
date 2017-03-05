@@ -21,11 +21,19 @@ namespace CrazyGo.Core
             get { return _positions.ToArray(); }
         }
 
+        /// <summary>
+        /// Returns the maximum row.
+        /// </summary>
+        /// <returns></returns>
         public int GetHeight()
         {
             return _positions.Max(p => p.Row);
         }
 
+        /// <summary>
+        /// Returns the maximum colum.
+        /// </summary>
+        /// <returns></returns>
         public int GetWidth()
         {
             return _positions.Max(p => p.Column);
@@ -37,9 +45,13 @@ namespace CrazyGo.Core
         /// <param name="position"></param>
         public void Add(Position position)
         {
-            _positions.Add(position);
+            _positions.Add(position);            
         }
 
+        /// <summary>
+        /// Overrides the base method.
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return "Goban " + GetHeight() + "x" + GetWidth();

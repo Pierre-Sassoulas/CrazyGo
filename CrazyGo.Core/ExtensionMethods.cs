@@ -35,6 +35,13 @@ namespace CrazyGo.Core
             return enumerable.ElementAt(index);
         }
 
+        /// <summary>
+        /// Returns true if the collection contains a position (<paramref name="row"/>,<paramref name="column"/>)
+        /// </summary>
+        /// <param name="enumerable"></param>
+        /// <param name="row"></param>
+        /// <param name="column"></param>
+        /// <returns></returns>
         public static bool Contains(this IEnumerable<Position> enumerable, int row, int column)
         {
             return enumerable.Contains(new Position(row, column));

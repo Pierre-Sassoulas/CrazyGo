@@ -10,6 +10,9 @@ namespace CrazyGo.Core
         private Color _color;
         private string _name;
 
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
         public Player()
         {
             _name = "";
@@ -25,22 +28,41 @@ namespace CrazyGo.Core
             set { _color = value; }
         }
 
+        /// <summary>
+        /// Overrides the base method.
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return _name + " (" + _color + ")";
         }
 
+        /// <summary>
+        /// Overrides the base method.
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
             return _name.GetHashCode();
         }
 
+        /// <summary>
+        /// Creates a new <see cref="CrazyGo.Core.Stone"/>, and wraps it in a <see cref="CrazyGo.Core.PlaceStone"/>.
+        /// </summary>
+        /// <param name="position"></param>
+        /// <returns></returns>
         public PlaceStone PlaceStone(Position position)
         {
             Stone stone = new Stone(position, this);
             return new PlaceStone(stone);
         }
 
+        /// <summary>
+        /// Creates a new <see cref="CrazyGo.Core.Stone"/>, and wraps it in a <see cref="CrazyGo.Core.PlaceStone"/>.
+        /// </summary>
+        /// <param name="row"></param>
+        /// <param name="column"></param>
+        /// <returns></returns>
         public PlaceStone PlaceStone(int row, int column)
         {
             return PlaceStone(new Position(row, column));
@@ -55,6 +77,11 @@ namespace CrazyGo.Core
             set { _name = value; }
         }
 
+        /// <summary>
+        /// Returns true if both objects have same <see cref="Name"/> and same <see cref="Color"/>.
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
         public bool Equals(Player other)
         {
             if (ReferenceEquals(other, null))
@@ -64,6 +91,11 @@ namespace CrazyGo.Core
             return _name == other._name && _color == other._color;
         }
 
+        /// <summary>
+        /// Overrides the base method
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public override bool Equals(object obj)
         {
             var p = obj as Player;

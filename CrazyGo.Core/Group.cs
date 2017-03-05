@@ -39,6 +39,10 @@ namespace CrazyGo.Core
             _player = stone.Player;
         }
 
+        /// <summary>
+        /// Copy constructor.
+        /// </summary>
+        /// <param name="group"></param>
         public Group(Group group)
         {
             _stones = new HashSet<Stone>(group.Stones);
@@ -85,15 +89,25 @@ namespace CrazyGo.Core
 
 
 
-        public bool Equals(Group other)
+        /// <summary>
+        /// Returns true if the Group <paramref name="group"/> has the same Player and same set of stones.
+        /// </summary>
+        /// <param name="group"></param>
+        /// <returns></returns>
+        public bool Equals(Group group)
         {
-            if (ReferenceEquals(other, null))
+            if (ReferenceEquals(group, null))
             {
                 return false;
             }
-            return ReferenceEquals(_player, other._player) && _stones.SetEquals(other._stones);
+            return ReferenceEquals(_player, group._player) && _stones.SetEquals(group._stones);
         }
 
+        /// <summary>
+        /// Overrides the base method.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public override bool Equals(object obj)
         {
             var g = obj as Group; ;
@@ -105,6 +119,13 @@ namespace CrazyGo.Core
         }
 
 
+        /// <summary>
+        /// Returns true if <paramref name="g1"/> is equal to <paramref name="g2"/>.
+        /// Calls the method <see cref="Equals(Group)"/>.
+        /// </summary>
+        /// <param name="g1"></param>
+        /// <param name="g2"></param>
+        /// <returns></returns>
         public static bool operator ==(Group g1, Group g2)
         {
             if (ReferenceEquals(g1, g2))
@@ -118,11 +139,21 @@ namespace CrazyGo.Core
             return g1.Equals(g2);
         }
 
+        /// <summary>
+        /// Returns true if <paramref name="g1"/> is different from <paramref name="g2"/>.
+        /// </summary>
+        /// <param name="g1"></param>
+        /// <param name="g2"></param>
+        /// <returns></returns>
         public static bool operator !=(Group g1, Group g2)
         {
             return !(g1 == g2);
         }
 
+        /// <summary>
+        /// Overrides the base method.
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
             if (_stones.Count > 0)
@@ -161,7 +192,7 @@ namespace CrazyGo.Core
         }
 
         /// <summary>
-        /// Returns <code>true</code> if the group contains the position.
+        /// Returns true if the group contains the position.
         /// </summary>
         /// <param name="position"></param>
         /// <returns></returns>
@@ -171,7 +202,7 @@ namespace CrazyGo.Core
         }
 
         /// <summary>
-        /// Returns <code>true</code> if the group contains the stone.
+        /// Returns true if the group contains the stone.
         /// </summary>
         /// <param name="stone"></param>
         /// <returns></returns>

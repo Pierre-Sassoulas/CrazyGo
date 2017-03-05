@@ -13,6 +13,9 @@ namespace CrazyGo.Core
         private int _playerTurn;
         private HashSet<Group> _groups;
 
+        /// <summary>
+        /// Previous <see cref="Turn"/>.
+        /// </summary>
         public Turn Previous { get; private set; }
 
         /// <summary>
@@ -40,6 +43,11 @@ namespace CrazyGo.Core
 
 
 
+        /// <summary>
+        /// Returns true if the <paramref name="stone"/> being played is going to capture a <see cref="Group"/>.
+        /// </summary>
+        /// <param name="stone"></param>
+        /// <returns></returns>
         public bool IsCapturing(Stone stone)
         {
             foreach (var group in _groups.Where(g => g.Player != stone.Player))
@@ -54,6 +62,12 @@ namespace CrazyGo.Core
         }
 
 
+        /// <summary>
+        /// Instantiates the next <see cref="Turn"/> by playing an <paramref name="action"/>.
+        /// The returned new <see cref="Turn"/> is null if the <paramref name="action"/> breaks the rules.
+        /// </summary>
+        /// <param name="action"></param>
+        /// <returns>The next <see cref="Turn"/> can be null if <paramref name="action"/> breaks the rules.</returns>
         public Turn NextTurn(Action action)
         {
             if (action.Player != CurrentPlayer)
@@ -191,6 +205,11 @@ namespace CrazyGo.Core
         }
 
 
+        /// <summary>
+        /// Returns a collection of free <see cref="Position"/>.
+        /// </summary>
+        /// <param name="group"></param>
+        /// <returns></returns>
         public IEnumerable<Position> GetFreedoms(Group group)
         {
             if (!_groups.Contains(group))

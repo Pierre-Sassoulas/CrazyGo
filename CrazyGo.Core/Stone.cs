@@ -27,7 +27,7 @@ namespace CrazyGo.Core
         }
 
         /// <summary>
-        /// Main constructor.
+        /// Instantiates a new <see cref="Stone"/>.
         /// </summary>
         /// <param name="position"></param>
         /// <param name="player"></param>
@@ -37,17 +37,32 @@ namespace CrazyGo.Core
             _player = player;
         }
 
+        /// <summary>
+        /// Instantiates a new <see cref="Stone"/>.
+        /// </summary>
+        /// <param name="row"></param>
+        /// <param name="column"></param>
+        /// <param name="player"></param>
         public Stone(int row, int column, Player player)
         {
             _position = new Position(row, column);
             _player = player;
         }
 
+        /// <summary>
+        /// Overrides the base method.
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return _position + " " + _player;
         }
 
+        /// <summary>
+        /// Returns true if both objects have same <see cref="Player"/> and same <see cref="Position"/>.
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
         public bool Equals(Stone s)
         {
             if (ReferenceEquals(s, null))
@@ -57,6 +72,11 @@ namespace CrazyGo.Core
             return ReferenceEquals(_player, s.Player) && _position == s.Position;
         }
 
+        /// <summary>
+        /// Overrides the base method.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public override bool Equals(object obj)
         {
             var s = obj as Stone; ;
@@ -67,6 +87,12 @@ namespace CrazyGo.Core
             return Equals(s);
         }
 
+        /// <summary>
+        /// Returns true if both objects have same <see cref="Player"/> and same <see cref="Position"/>.
+        /// </summary>
+        /// <param name="s1"></param>
+        /// <param name="s2"></param>
+        /// <returns></returns>
         public static bool operator ==(Stone s1, Stone s2)
         {
             if (ReferenceEquals(s1, s2))
@@ -80,11 +106,21 @@ namespace CrazyGo.Core
             return s1.Equals(s2);
         }
 
+        /// <summary>
+        /// Returns true if objects are different.
+        /// </summary>
+        /// <param name="s1"></param>
+        /// <param name="s2"></param>
+        /// <returns></returns>
         public static bool operator !=(Stone s1, Stone s2)
         {
             return !(s1 == s2);
         }
 
+        /// <summary>
+        /// Overrides the base method.
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
             return _position.GetHashCode();
