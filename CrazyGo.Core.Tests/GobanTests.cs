@@ -9,7 +9,7 @@ namespace CrazyGo.Core.Tests
         [TestMethod]
         public void GetHeight()
         {
-            var goban = new RegularGoban(7, 9);
+            var goban = new StandardGoban(7, 9);
             Assert.AreEqual(7, goban.GetHeight());
             Assert.AreEqual(9, goban.GetWidth());
         }

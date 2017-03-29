@@ -16,7 +16,7 @@ namespace CrazyGo.Core.Tests
         {
             _black = new HumanPlayer() { Color = Color.Black, Name = "Black" };
             _white = new HumanPlayer() { Color = Color.White, Name = "White" };
-            Goban goban = new RegularGoban(3, 4);
+            Goban goban = new StandardGoban(3, 4);
             GameContext gameContext = new GameContext(goban, new Player[] { _black, _white });
             _turn = new Turn(gameContext);
         }
