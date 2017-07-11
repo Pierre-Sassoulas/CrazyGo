@@ -74,5 +74,23 @@ namespace CrazyGo.Core.Tests
             _turn = _turn.NextTurn(_black.PlaceStone(2, 2));
             Assert.IsNull(_turn);
         }
+
+        [TestMethod]
+        public void PlayerTurn()
+        {
+            Assert.AreEqual(_turn.CurrentPlayer, _black);
+            Assert.AreEqual(_turn.NextPlayer, _white);
+            Assert.IsNull(_turn.NextTurn(new PassHand(_white)));
+            Turn _nextTurn = _turn.NextTurn(new PassHand(_black));
+            Assert.IsNotNull(_nextTurn);
+            Assert.AreEqual(_nextTurn.CurrentPlayer, _white);
+            Assert.AreEqual(_nextTurn.NextPlayer, _black);
+        }
+
+        [TestMethod]
+        public void NextTurn_ActionIsNull()
+        {
+            Assert.IsNull(_turn.NextTurn(null));            
+        }
     }
 }

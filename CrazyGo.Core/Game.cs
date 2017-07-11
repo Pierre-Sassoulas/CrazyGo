@@ -29,8 +29,22 @@ namespace CrazyGo.Core
         public Game(Goban goban, Player[] players)
         {
             GameContext gameContext = new GameContext(goban, players);
+            _turns.Add(new Turn(gameContext));
+        }
+        
+        public void NextTurn(Action action)
+        {
+            _turns.Add(LastTurn.NextTurn(action));
         }
 
+        public void NextTurn(Position position)
+        {
+            NextTurn(new PlaceStone(new Stone(position, CurrentPlayer)));
+        }
+        
+        public Turn LastTurn { get { return _turns.Last(); } }
+        public Player CurrentPlayer { get { return LastTurn.CurrentPlayer; } }
+        public GameContext GameContext { get { return LastTurn.GameContext; } }
 
     }
 }

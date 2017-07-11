@@ -41,10 +41,8 @@ namespace CrazyGo.Core
             return nextTurn;
         }
 
-
-
         /// <summary>
-        /// Returns true if the <paramref name="stone"/> being played is going to capture a <see cref="Group"/>.
+        /// Returns true if the given <paramref name="stone"/> is going to capture a <see cref="Group"/>.
         /// </summary>
         /// <param name="stone"></param>
         /// <returns></returns>
@@ -70,11 +68,16 @@ namespace CrazyGo.Core
         /// <returns>The next <see cref="Turn"/> can be null if <paramref name="action"/> breaks the rules.</returns>
         public Turn NextTurn(Action action)
         {
-            if (action.Player != CurrentPlayer)
+            if (action == null)
             {
                 return null;
             }
 
+            if (action.Player != CurrentPlayer)
+            {
+                return null;
+            }
+            
             if (action is PassHand)
             {
                 return initializeNextTurn();
@@ -225,6 +228,15 @@ namespace CrazyGo.Core
         public Player CurrentPlayer
         {
             get { return _gameContext.Players[_playerTurn]; }
+        }
+
+        public Player NextPlayer
+        {
+            get
+            {
+                int n = _gameContext.Players.Length;
+                return _gameContext.Players[(_playerTurn + 1) % n];
+            }
         }
 
     }
