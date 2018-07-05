@@ -1,13 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrazyGo.Core", "CrazyGo.Core\CrazyGo.Core.csproj", "{040B9FDD-0620-47DA-B36A-55C9F4CB32E0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrazyGo.Core.Tests", "CrazyGo.Core.Tests\CrazyGo.Core.Tests.csproj", "{380BFF05-1B3C-42FB-BB94-1EF620436173}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrazyGo.Wpf", "CrazyGo.Wpf\CrazyGo.Wpf.csproj", "{630C7A96-2D83-416F-82C9-9DEC19F6669B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrazyGo.Console", "CrazyGo.Console\CrazyGo.Console.csproj", "{703BE74A-D25A-401F-8A08-C9E356D9867C}"
 EndProject
@@ -25,10 +23,6 @@ Global
 		{380BFF05-1B3C-42FB-BB94-1EF620436173}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{380BFF05-1B3C-42FB-BB94-1EF620436173}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{380BFF05-1B3C-42FB-BB94-1EF620436173}.Release|Any CPU.Build.0 = Release|Any CPU
-		{630C7A96-2D83-416F-82C9-9DEC19F6669B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{630C7A96-2D83-416F-82C9-9DEC19F6669B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{630C7A96-2D83-416F-82C9-9DEC19F6669B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{630C7A96-2D83-416F-82C9-9DEC19F6669B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{703BE74A-D25A-401F-8A08-C9E356D9867C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{703BE74A-D25A-401F-8A08-C9E356D9867C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{703BE74A-D25A-401F-8A08-C9E356D9867C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -36,5 +30,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {411F85F6-9930-4196-B102-750E764FEF63}
 	EndGlobalSection
 EndGlobal
